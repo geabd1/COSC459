@@ -67,13 +67,45 @@ VALUES
 
 -- Worksheet Questions
 -- 1. Retrieve all employees from the Employees table.
-SELECT employees FROM Employees
+SELECT *
+FROM Employees;
 -- 2. Retrieve employees who are in the IT department and earn more than 70,000.
+SELECT *
+FROM Employees
+WHERE Department = 'IT' AND Salary > 70000;
 -- 3. Find employees whose last name starts with 'S'.
+SELECT *
+FROM Employees
+WHERE LastName LIKE 'S%';
 -- 4. Get the highest salary in each department.
+SELECT Department, MAX(Salary)
+AS HighestSalary
+FROM Employees
+GROUP BY Department;
 -- 5. Count the number of employees in each department.
+SELECT Department, COUNT(*)
+AS EmployeeCount
+FROM Employees
+GROUP BY Department;
 -- 6. Find employees who are not assigned to any project.
+SELECT *
+FROM Employees
+WHERE EmployeeID NOT IN
+(SELECT DISTINCT EmployeeID
+FROM EmployeeProjects);
 -- 7. Get employees hired before 2018 and sort them by hire date.
+SELECT *
+FROM Employees
+WHERE HireDate < '2018-01-01'
+ORDER BY HireDate;
 -- 8. Calculate the total salary expense for all employees.
+SELECT SUM(Salary)
+AS TotalSalaryExpense
+FROM Employees;
 -- 9. Get projects that ended before 2023.
+SELECT *
+FROM Projects
+WHERE EndDate < '2023-01-01';
 -- 10. Retrieve distinct departments from the Employees table.
+SELECT DISTINCT Department FROM Employees;
+
